@@ -1,16 +1,24 @@
+import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Statistics = () => {
+  const [todoData, setTodoData] = useState(null);
+
+  useEffect(() => {
+    fetch('https://nba-production-b6b8.up.railway.app/getFinalStat')
+      .then(response => response.json())
+      .then(data => setTodoData(data))
+      .catch(error => console.error('Erreur lors de la récupération des données:', error));
+  }, []);
+
   return (
     <div className="container mt-5">
       <h2 className="text-center mb-4">STATISTIQUES SAISON 2023-2024</h2>
       <table className="table table-bordered table-striped">
         <thead className="table-dark">
           <tr>
-            <th>CLASSEMENT</th>
             <th>JOUEUR</th>
-            <th>ÉQUIPE</th>
-            <th>M</th>
+            <th>DESACTIVE</th>
             <th>MJ</th>
             <th>PPM</th>
             <th>RPM</th>
@@ -20,36 +28,30 @@ const Statistics = () => {
             <th>FG%</th>
             <th>3P%</th>
             <th>%LF</th>
-            <th>DÉSACTIVÉ</th>
-            <th>DÉF</th>
-            <th>IPM</th>
-            <th>CPM</th>
-            <th>BP</th>
-            <th>FP</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Player Name</td>
-            <td>Team</td>
-            <td>13</td>
-            <td>13</td>
-            <td>31.9</td>
-            <td>11.2</td>
-            <td>6.2</td>
-            <td>34.1</td>
-            <td>36.4</td>
-            <td>50.2</td>
-            <td>31.8</td>
-            <td>88.5</td>
-            <td>DÉSACTIVÉ</td>
-            <td>8</td>
-            <td>0.9</td>
-            <td>1.5</td>
-            <td>3.5</td>
-            <td>2.7</td>
-          </tr>
+          {todoData ? (
+            todoData.map((player, index) => (
+              <tr key={index}>
+                <td>{player.joueur.nom_joueur}</td>
+                <td>{player.desactive}</td>
+                <td>{player.mj}</td>
+                <td>{player.ppm}</td>
+                <td>{player.rpm}</td>
+                <td>{player.pdpm}</td>
+                <td>{player.mpm}</td>
+                <td>{player.eff}</td>
+                <td>{player.fg}</td>
+                <td>{player.threepoints}</td>
+                <td>{player.lf}</td>
+              </tr>
+            ))
+          ) : (
+            <tr>
+              <td colSpan="20">Chargement...</td>
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
