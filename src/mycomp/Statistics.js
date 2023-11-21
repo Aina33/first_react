@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from 'react';
-import StatisticsRow from './StatisticsRow';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Statistics = () => {
