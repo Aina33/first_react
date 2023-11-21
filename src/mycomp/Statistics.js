@@ -28,6 +28,7 @@ const Statistics = () => {
             <th>FG%</th>
             <th>3P%</th>
             <th>%LF</th>
+            <th>%LFi</th>
           </tr>
         </thead>
         <tbody>
