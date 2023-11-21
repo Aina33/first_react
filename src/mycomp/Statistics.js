@@ -3,15 +3,6 @@ import StatisticsRow from './StatisticsRow';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Statistics = () => {
-  const [seasonStats, setSeasonStats] = useState([]);
-
-  // useEffect(() => {
-  //   fetch('')
-  //     .then(response => response.json())
-  //     .then(data => setSeasonStats(data))
-  //     .catch(error => console.error('Erreur lors de la récupération des données:', error));
-  // }, []); 
-
   return (
     <div className="container mt-5">
       <h2 className="text-center mb-4">STATISTIQUES SAISON 2023-2024</h2>
@@ -40,11 +31,7 @@ const Statistics = () => {
           </tr>
         </thead>
         <tbody>
-          {/* {seasonStats.map((playerStat, index) => (
-            <StatisticsRow key={index} {...playerStat} />
-          ))} */}
           <tr>
-            <th></th>
             <td>1</td>
             <td>Player Name</td>
             <td>Team</td>
